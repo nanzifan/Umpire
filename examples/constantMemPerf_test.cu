@@ -10,14 +10,14 @@
 
 __constant__ double d[1024*8];
 
-__global__ void add_constant_kernel(const double *a, double *d, double *c, int size)
-{
-  const int i = blockDim.x * blockIdx.x + threadIdx.x;
-  // if (i < size)
-  // {
-    c[i] = a[i] + d[i];
-  // }
-}
+// __global__ void add_constant_kernel(const double *a, double *d, double *c, int size)
+// {
+//   const int i = blockDim.x * blockIdx.x + threadIdx.x;
+//   // if (i < size)
+//   // {
+//     c[i] = a[i] + d[i];
+//   // }
+// }
 
 __global__ void add_constant_original(const double *a, double *c, int size)
 {
@@ -28,6 +28,12 @@ __global__ void add_constant_original(const double *a, double *c, int size)
   // }
 }
 
+__global__ void add_kernel(const double *a, const double *b, double *c, int size)
+{
+  const int i = blockDim.x * blockIdx.x + threadIdx.x;
+  // if (i < size)
+    c[i] = a[i] + b[i];
+}
 
 void check_error(void)
 {
