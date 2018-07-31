@@ -107,7 +107,7 @@ int main(int, char**)
     t1 = std::chrono::high_resolution_clock::now();
     add_kernel<<<256, 1024>>>(d_a, d_b, d_sum, size);
     t2 = std::chrono::high_resolution_clock::now();
-    timing_device += std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1).count()
+    timing_device += std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1).count();
     check_error();
   }
   
@@ -129,7 +129,7 @@ int main(int, char**)
     t1 = std::chrono::high_resolution_clock::now();
     add_constant_kernel<<<256, 1024>>>(d_a, d_d, d_sum, size);
     t2 = std::chrono::high_resolution_clock::now();
-    timing_const += std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1).count()
+    timing_const += std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1).count();
     check_error();
   }
   // cudaMemcpy(sum, d_sum, size*sizeof(double), cudaMemcpyDeviceToHost);
