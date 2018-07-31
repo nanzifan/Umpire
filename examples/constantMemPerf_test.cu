@@ -21,7 +21,7 @@ __global__ void add_constant_kernel(const double *a, double *d, double *c, int s
 
 __global__ void add_constant_original(const double *a, double *c, int size)
 {
-  const int i = blockDim.x * blockIdx.x.+ threadIdx.x;
+  const int i = blockDim.x * blockIdx.x + threadIdx.x;
   if (i < size)
   {
     c[i] = a[i] + d[i];
