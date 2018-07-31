@@ -32,7 +32,7 @@ __global__ void add_kernel(const double *a, const double *b, double *c, int size
 {
   const int i = blockDim.x * blockIdx.x + threadIdx.x;
   // if (i < size)
-    c[i] = a[i] - b[i];
+    c[i] = a[i] + b[i];
 }
 
 void check_error(void)
