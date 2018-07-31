@@ -146,7 +146,7 @@ int main(int, char**)
   for(int i=0; i<run_times; i++)
   {
     t1 = std::chrono::high_resolution_clock::now();
-    add_constant_original<<<8, 1024>>>(d_a, dd_sum, size);
+    add_constant_original<<<1, 1024>>>(d_a, dd_sum, size);
     t2 = std::chrono::high_resolution_clock::now();
     timing_const += std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1).count();
     check_error();
