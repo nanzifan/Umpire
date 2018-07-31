@@ -67,6 +67,7 @@ int main(int, char**)
   // double *sum = (double*)malloc(sizeof(double) * size);
 
   auto host_alloc = rm.getAllocator("HOST");
+  double *ssum = static_cast<double*>(dev_alloc.allocate(size*sizeof(double)));
   double *sum = static_cast<double*>(host_alloc.allocate(size*sizeof(double)));
   double *a = static_cast<double*>(host_alloc.allocate(size*sizeof(double)));
   double *b = static_cast<double*>(host_alloc.allocate(size*sizeof(double)));
@@ -77,6 +78,7 @@ int main(int, char**)
   // double *d_sum;
 
   auto dev_alloc = rm.getAllocator("DEVICE");
+  double *dd_sum = static_cast<double*>(dev_alloc.allocate(size*sizeof(double)));
   double *d_sum = static_cast<double*>(dev_alloc.allocate(size*sizeof(double)));
   double *d_a = static_cast<double*>(dev_alloc.allocate(size*sizeof(double)));
   double *d_b = static_cast<double*>(dev_alloc.allocate(size*sizeof(double)));
@@ -137,8 +139,8 @@ int main(int, char**)
   std::cout << "time for device" << timing_device << std::endl;
 
 // ----------------add const kernel-------------------------
-  dev_alloc.deallocate(d_sum);
-  double *dd_sum = static_cast<double*>(dev_alloc.allocate(size*sizeof(double)));
+  // dev_alloc.deallocate(d_sum);
+  // double *dd_sum = static_cast<double*>(dev_alloc.allocate(size*sizeof(double)));
 
 
   for(int i=0; i<run_times; i++)
@@ -150,13 +152,13 @@ int main(int, char**)
     check_error();
   }
   // cudaMemcpy(sum, d_sum, size*sizeof(double), cudaMemcpyDeviceToHost);
-  rm.copy(sum, dd_sum, size*sizeof(double));
+  rm.copy(ssum, dd_sum, size*sizeof(double));
   check_error();
 
   int final_sum_const = 0;
   for (int i=0; i<size; i++)
   {
-     final_sum_const += sum[i];
+     final_sum_const += ssum[i];
   }
   std::cout << "const memory result:  " << final_sum_const << std::endl;
   std::cout << "time for const" << timing_const << std::endl;
