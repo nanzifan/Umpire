@@ -51,6 +51,12 @@ blt_add_executable(
   DEPENDS_ON 
     umpire)
 
+blt_add_executable(
+  NAME const_perf_test
+  SOURCES constantMemPerf_test.cu
+  DEPENDS_ON 
+    umpire)
+
 if (ENABLE_STATISTICS)
   blt_add_executable(
     NAME statistics_example
