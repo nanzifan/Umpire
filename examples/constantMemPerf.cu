@@ -122,6 +122,7 @@ int main(int, char**)
     final_sum += sum[i];   
   }
   std::cout << "device memory result: " << final_sum << std::endl;
+  std::cout << "time for device" << timing_device << std::endl;
 
 // ----------------add const kernel-------------------------
   for(int i=0; i<run_times; i++)
@@ -142,6 +143,7 @@ int main(int, char**)
      final_sum_const += sum[i];
   }
   std::cout << "const memory result:  " << final_sum_const << std::endl;
+  std::cout << "time for const" << timing_const << std::endl;
 
   if (final_sum_const - final_sum == 0)
     std::cout << "Same result, success" << std::endl;
