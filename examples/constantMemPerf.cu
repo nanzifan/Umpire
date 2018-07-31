@@ -39,7 +39,7 @@ int main(int, char**)
   // auto& rm = umpire::ResourceManager::getInstance();
 
   const int size = 1024 * 8;
-  const int run_times = 100000;
+  const int run_times = 10000000;
   double timing_device = 0;
   double timing_const = 0;
 
