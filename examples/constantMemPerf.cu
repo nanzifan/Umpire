@@ -105,7 +105,7 @@ int main(int, char**)
   for(int i=0; i<run_times; i++)
   {
     t1 = std::chrono::high_resolution_clock::now();
-    add_kernel<<<256, 1024>>>(d_a, d_b, d_sum, size);
+    add_kernel<<<2, 1024>>>(d_a, d_b, d_sum, size);
     t2 = std::chrono::high_resolution_clock::now();
     timing_device += std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1).count();
     check_error();
