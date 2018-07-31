@@ -138,19 +138,19 @@ int main(int, char**)
 
 // ----------------add const kernel-------------------------
   dev_alloc.deallocate(d_sum);
-  double *d_sum = static_cast<double*>(dev_alloc.allocate(size*sizeof(double)));
+  double *dd_sum = static_cast<double*>(dev_alloc.allocate(size*sizeof(double)));
 
 
   for(int i=0; i<run_times; i++)
   {
     t1 = std::chrono::high_resolution_clock::now();
-    add_constant_original<<<2, 256>>>(d_a, d_sum, size);
+    add_constant_original<<<2, 256>>>(d_a, dd_sum, size);
     t2 = std::chrono::high_resolution_clock::now();
     timing_const += std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1).count();
     check_error();
   }
   // cudaMemcpy(sum, d_sum, size*sizeof(double), cudaMemcpyDeviceToHost);
-  rm.copy(sum, d_sum, size*sizeof(double));
+  rm.copy(sum, dd_sum, size*sizeof(double));
   check_error();
 
   int final_sum_const = 0;
