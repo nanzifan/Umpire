@@ -140,7 +140,7 @@ int main(int, char**)
   for(int i=0; i<run_times; i++)
   {
     t1 = std::chrono::high_resolution_clock::now();
-    add_constant_kernel<<<256, 1024>>>(d_a, d_d, d_sum, size);
+    add_constant_original<<<256, 1024>>>(d_a, d_sum, size);
     t2 = std::chrono::high_resolution_clock::now();
     timing_const += std::chrono::duration_cast<std::chrono::duration<double> >(t2 - t1).count();
     check_error();
@@ -175,7 +175,7 @@ int main(int, char**)
   host_alloc.deallocate(a);
   host_alloc.deallocate(b);
   host_alloc.deallocate(sum);
-  dev_const_alloc.deallocate(d_d);
+  // dev_const_alloc.deallocate(d_d);
 
   return 0;
 }
