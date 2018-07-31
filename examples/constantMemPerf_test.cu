@@ -138,7 +138,7 @@ int main(int, char**)
 
 // ----------------add const kernel-------------------------
   dev_alloc.deallocate(d_sum);
-  *d_sum = static_cast<double*>(dev_alloc.allocate(size*sizeof(double)));
+  double *d_sum = static_cast<double*>(dev_alloc.allocate(size*sizeof(double)));
 
 
   for(int i=0; i<run_times; i++)
