@@ -67,7 +67,7 @@ int main(int, char**)
   // double *sum = (double*)malloc(sizeof(double) * size);
 
   auto host_alloc = rm.getAllocator("HOST");
-  double *ssum = static_cast<double*>(dev_alloc.allocate(size*sizeof(double)));
+  double *ssum = static_cast<double*>(host_alloc.allocate(size*sizeof(double)));
   double *sum = static_cast<double*>(host_alloc.allocate(size*sizeof(double)));
   double *a = static_cast<double*>(host_alloc.allocate(size*sizeof(double)));
   double *b = static_cast<double*>(host_alloc.allocate(size*sizeof(double)));
