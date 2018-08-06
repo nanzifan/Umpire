@@ -26,5 +26,5 @@ install(TARGETS
   ARCHIVE DESTINATION lib)
 
 install(FILES
-  judy.h judyLArray.h
+  judy.h judyLArray.h judyL2Array.h
   DESTINATION include/umpire/tpl/judy)
